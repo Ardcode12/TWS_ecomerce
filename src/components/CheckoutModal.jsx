@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useStore } from "../context/StoreContext";
+import { CheckCircle, Close } from "./Icons";
 
 export default function CheckoutModal() {
   const { state, dispatch, cartTotal, showToast } = useStore();
@@ -24,14 +25,16 @@ export default function CheckoutModal() {
     const id = "TWS" + Date.now();
     setOrderId(state.lastOrderId || id);
     setSuccess(true);
-    showToast("Order placed successfully! 🎉");
+    showToast("Order placed successfully!");
   }
 
   if (success) {
     return (
       <div className="modal-overlay" onClick={(e) => e.target === e.currentTarget && close()}>
         <div className="modal-box modal-box-sm success-box">
-          <div className="success-icon">🎉</div>
+          <div className="success-icon" style={{ display: "flex", justifyContent: "center", marginBottom: 16 }}>
+            <CheckCircle size={52} color="#16a34a" />
+          </div>
           <h2>Order placed!</h2>
           <p>Your festive pieces are on their way to you.</p>
           <p className="order-id-text">Order ID: {state.orders[0]?.id || orderId}</p>
@@ -49,7 +52,9 @@ export default function CheckoutModal() {
   return (
     <div className="modal-overlay" onClick={(e) => e.target === e.currentTarget && close()}>
       <div className="modal-box modal-box-lg">
-        <button className="modal-close" onClick={close}>✕</button>
+        <button className="modal-close" onClick={close} aria-label="Close modal">
+          <Close size={18} />
+        </button>
         <h2 className="auth-title">Checkout</h2>
 
         <div className="checkout-layout">
@@ -92,7 +97,11 @@ export default function CheckoutModal() {
             </div>
             <h3 style={{ marginTop: 28 }}>Payment method</h3>
             <div className="payment-options">
-              {[{v:"upi",l:"📱 UPI / GPay / PhonePe"},{v:"card",l:"💳 Debit / Credit Card"},{v:"cod",l:"💵 Cash on Delivery"}].map(opt => (
+              {[
+                { v: "upi", l: "UPI / Net Banking (GPay, PhonePe)" },
+                { v: "card", l: "Credit / Debit Card" },
+                { v: "cod", l: "Cash on Delivery (COD)" },
+              ].map(opt => (
                 <label className="payment-opt" key={opt.v}>
                   <input type="radio" name="payment" value={opt.v} checked={form.payment === opt.v}
                     onChange={() => setForm({...form, payment: opt.v})} />

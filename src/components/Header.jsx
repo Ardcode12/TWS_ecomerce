@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useStore } from "../context/StoreContext";
+import { Close, Box, Heart, LogOut, ChevronDown } from "./Icons";
 
 export default function Header() {
   const { state, dispatch, cartCount, showToast } = useStore();
@@ -49,7 +50,7 @@ export default function Header() {
   function handleLogout() {
     dispatch({ type: "LOGOUT" });
     setUserMenuOpen(false);
-    showToast("Signed out. See you soon! 👋", "info");
+    showToast("Signed out successfully.", "info");
   }
 
   return (
@@ -57,7 +58,7 @@ export default function Header() {
       <header className="header">
         <div className="header-top">
           <span className="header-marquee-text">
-            🎉 Festive Sale – Up to 40% off on select styles &nbsp;|&nbsp; Free shipping on orders above ₹999 &nbsp;|&nbsp; New cotton aura collection just dropped!
+            Festive Sale: Up to 40% off on select styles &nbsp;|&nbsp; Free shipping on orders above ₹999 &nbsp;|&nbsp; Handcrafted pure cotton collection
           </span>
         </div>
         <nav className="navbar">
@@ -80,7 +81,9 @@ export default function Header() {
               </li>
             ))}
             <li className="nav-dropdown">
-              <a href="#" className="nav-link">Collections ▾</a>
+              <a href="#" className="nav-link" style={{ display: "inline-flex", alignItems: "center", gap: 5 }}>
+                Collections <ChevronDown size={12} />
+              </a>
               <ul className="dropdown-menu">
                 {["Kurta Sets","Co-ord Sets","Dupattas","Festive Edit"].map(c => (
                   <li key={c}><a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); navigateCat(c); }}>{c}</a></li>
@@ -111,10 +114,16 @@ export default function Header() {
                     <div className="user-menu-name">{user.name}</div>
                     <div className="user-menu-email">{user.email}</div>
                   </div>
-                  <button className="user-menu-item" onClick={() => { navigate("orders"); setUserMenuOpen(false); }}>📦 My Orders</button>
-                  <button className="user-menu-item" onClick={() => { navigate("wishlist"); setUserMenuOpen(false); }}>💛 Wishlist</button>
+                  <button className="user-menu-item" style={{ display: "flex", alignItems: "center", gap: 8 }} onClick={() => { navigate("orders"); setUserMenuOpen(false); }}>
+                    <Box size={16} /> My Orders
+                  </button>
+                  <button className="user-menu-item" style={{ display: "flex", alignItems: "center", gap: 8 }} onClick={() => { navigate("wishlist"); setUserMenuOpen(false); }}>
+                    <Heart size={16} /> Wishlist
+                  </button>
                   <div className="user-menu-divider" />
-                  <button className="user-menu-item danger" onClick={handleLogout}>🚪 Sign out</button>
+                  <button className="user-menu-item danger" style={{ display: "flex", alignItems: "center", gap: 8 }} onClick={handleLogout}>
+                    <LogOut size={16} /> Sign out
+                  </button>
                 </div>
               )}
             </div>
@@ -128,14 +137,18 @@ export default function Header() {
               placeholder="Search kurtas, co-ords, festive cotton wear…" />
             <button type="submit" className="btn btn-primary btn-sm">Search</button>
           </form>
-          <button className="search-close" onClick={() => setSearchOpen(false)}>✕</button>
+          <button className="search-close" onClick={() => setSearchOpen(false)} aria-label="Close search">
+            <Close size={18} />
+          </button>
         </div>
       </header>
 
       {/* Mobile Drawer */}
       {drawerOpen && <div className="backdrop show" onClick={() => setDrawerOpen(false)} />}
       <div className={`mobile-drawer${drawerOpen ? " open" : ""}`}>
-        <button className="drawer-close" onClick={() => setDrawerOpen(false)}>✕</button>
+        <button className="drawer-close" onClick={() => setDrawerOpen(false)} aria-label="Close menu">
+          <Close size={18} />
+        </button>
         <a href="#" className="brand-logo" style={{ marginBottom: 36, display: "block" }}
           onClick={(e) => { e.preventDefault(); navigate("home"); }}>
           <span className="brand-logo-main">TWS Store</span>

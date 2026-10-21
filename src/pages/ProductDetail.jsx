@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useStore } from "../context/StoreContext";
 import ProductCard from "../components/ProductCard";
 import { PRODUCTS } from "../data/products";
+import { Star, Bag, Heart, HeartFilled, Truck, Clock, RotateCcw } from "../components/Icons";
 
 export default function ProductDetail() {
   const { state, dispatch, showToast } = useStore();
@@ -26,7 +27,7 @@ export default function ProductDetail() {
       payload: { product, size: selectedSize, color: selectedColor, qty },
     });
     dispatch({ type: "TOGGLE_CART" });
-    showToast(`Added ${qty} × ${product.name} (${selectedSize}) to cart! 🛍️`);
+    showToast(`Added ${qty} × ${product.name} (${selectedSize}) to cart`);
   }
 
   function handleBuyNow() {
@@ -40,7 +41,7 @@ export default function ProductDetail() {
   function toggleWishlist() {
     dispatch({ type: "TOGGLE_WISHLIST", payload: product });
     showToast(
-      isWished ? "Removed from wishlist" : "Added to wishlist 💛",
+      isWished ? "Removed from wishlist" : "Added to wishlist",
       isWished ? "info" : "success"
     );
   }
@@ -97,7 +98,11 @@ export default function ProductDetail() {
           <h1 className="pd-name">{product.name}</h1>
 
           <div className="pd-rating">
-            <span className="stars">{"★".repeat(Math.floor(product.rating))}</span>
+            <div style={{ display: "inline-flex", gap: 3, alignItems: "center" }}>
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} size={15} filled={i < Math.floor(product.rating)} />
+              ))}
+            </div>
             <span>{product.rating}</span>
             <span>·</span>
             <span>{product.reviews} customer reviews</span>
@@ -185,18 +190,26 @@ export default function ProductDetail() {
             <div style={{ display: "flex", gap: 12 }}>
               <button
                 className="btn btn-primary"
-                style={{ flex: 1, padding: "14px 24px" }}
+                style={{ flex: 1, padding: "14px 24px", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}
                 onClick={handleAddToCart}
               >
-                Add to Cart 🛍️
+                <Bag size={18} color="#ffffff" /> Add to Cart
               </button>
               <button
                 className={`btn btn-outline`}
-                style={{ padding: "14px 20px" }}
+                style={{ padding: "14px 20px", display: "inline-flex", alignItems: "center", gap: 6 }}
                 onClick={toggleWishlist}
                 title="Wishlist"
               >
-                {isWished ? "💛 Saved" : "🤍 Wishlist"}
+                {isWished ? (
+                  <>
+                    <HeartFilled size={18} color="#e8521a" /> Saved
+                  </>
+                ) : (
+                  <>
+                    <Heart size={18} /> Wishlist
+                  </>
+                )}
               </button>
             </div>
             <button
@@ -263,10 +276,19 @@ export default function ProductDetail() {
                 </div>
               )}
               {activeTab === "shipping" && (
-                <div>
-                  <p>🚚 <strong>Free Shipping:</strong> On orders over ₹999 anywhere across India.</p>
-                  <p style={{ marginTop: 6 }}>⏱️ <strong>Estimated Delivery:</strong> 3–5 business days.</p>
-                  <p style={{ marginTop: 6 }}>↩️ <strong>Easy Returns:</strong> 7-day hassle-free exchange & return policy.</p>
+                <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <Truck size={17} color="var(--ember)" />
+                    <span><strong>Free Shipping:</strong> On orders over ₹999 anywhere across India.</span>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <Clock size={17} color="var(--ember)" />
+                    <span><strong>Estimated Delivery:</strong> 3–5 business days.</span>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <RotateCcw size={17} color="var(--ember)" />
+                    <span><strong>Easy Returns:</strong> 7-day hassle-free exchange & return policy.</span>
+                  </div>
                 </div>
               )}
             </div>

@@ -1,4 +1,5 @@
 import { useStore } from "../context/StoreContext";
+import { Check } from "../components/Icons";
 
 export default function About() {
   const { dispatch } = useStore();
@@ -24,10 +25,22 @@ export default function About() {
               Every kurta set, co-ord ensemble, and dupatta in our collection is thoughtfully designed with the warmth of Indian festivities in mind — rich saffron shades, grounding ember tones, delicate handblock prints, and meticulous zari embroidery.
             </p>
             <ul className="about-list">
-              <li>✨ <strong>100% Breathable Cotton:</strong> Sourced ethically and woven for skin-friendly comfort.</li>
-              <li>🎨 <strong>Artisanal Block Prints:</strong> Hand-crafted by hereditary artisans across Rajasthan & Gujarat.</li>
-              <li>🌿 <strong>Conscious Fashion:</strong> Made in small, intentional batches to prevent textile waste.</li>
-              <li>💫 <strong>Inclusive Fit:</strong> Flattering cuts from XS through XXL made to flatter every silhouette.</li>
+              <li style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
+                <span style={{ color: "var(--ember)", marginTop: 2 }}><Check size={16} /></span>
+                <span><strong>100% Breathable Cotton:</strong> Sourced ethically and woven for skin-friendly comfort.</span>
+              </li>
+              <li style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
+                <span style={{ color: "var(--ember)", marginTop: 2 }}><Check size={16} /></span>
+                <span><strong>Artisanal Block Prints:</strong> Hand-crafted by hereditary artisans across Rajasthan &amp; Gujarat.</span>
+              </li>
+              <li style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
+                <span style={{ color: "var(--ember)", marginTop: 2 }}><Check size={16} /></span>
+                <span><strong>Conscious Fashion:</strong> Made in small, intentional batches to prevent textile waste.</span>
+              </li>
+              <li style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
+                <span style={{ color: "var(--ember)", marginTop: 2 }}><Check size={16} /></span>
+                <span><strong>Inclusive Fit:</strong> Flattering cuts from XS through XXL made to flatter every silhouette.</span>
+              </li>
             </ul>
             <div style={{ marginTop: 28 }}>
               <button
@@ -44,7 +57,7 @@ export default function About() {
 
           <div className="about-image">
             <img
-              src="https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=800&q=80"
+              src="/images/item-2.jpg"
               alt="Artisan crafting cotton festive garments"
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />

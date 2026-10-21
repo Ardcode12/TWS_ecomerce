@@ -1,13 +1,14 @@
 import { useStore } from "../context/StoreContext";
 import ProductCard from "../components/ProductCard";
 import { PRODUCTS } from "../data/products";
+import { Leaf, Sparkles, Truck, RotateCcw, Star } from "../components/Icons";
 import { useState } from "react";
 
 const CATS = [
-  { label: "Kurta Sets", img: "https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=600&q=80" },
-  { label: "Co-ord Sets", img: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=600&q=80" },
-  { label: "Dupattas", img: "https://images.unsplash.com/photo-1606744824163-985d376605ef?w=600&q=80" },
-  { label: "Festive Edit", img: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&q=80" },
+  { label: "Kurta Sets", img: "/images/item-1.jpg" },
+  { label: "Co-ord Sets", img: "/images/item-2.jpg" },
+  { label: "Dupattas", img: "/images/item-5.jpg" },
+  { label: "Festive Edit", img: "/images/item-3.jpg" },
 ];
 
 export default function Home() {
@@ -20,16 +21,23 @@ export default function Home() {
 
   function handleNewsletter(e) {
     e.preventDefault();
-    showToast("You're subscribed! Welcome to the aura club 🌟");
+    showToast("You are subscribed to the newsletter!");
     setEmail("");
   }
+
+  const uspItems = [
+    { icon: <Leaf size={28} color="var(--ember)" />, title: "100% Pure Cotton", desc: "Every piece is crafted in breathable, skin-kind cotton." },
+    { icon: <Sparkles size={28} color="var(--ember)" />, title: "Festive Aura", desc: "Designs made for celebrations — big and small." },
+    { icon: <Truck size={28} color="var(--ember)" />, title: "Free Shipping", desc: "On all orders above ₹999 across India." },
+    { icon: <RotateCcw size={28} color="var(--ember)" />, title: "Easy Returns", desc: "7-day hassle-free return policy on all styles." },
+  ];
 
   return (
     <>
       {/* Hero */}
       <div className="hero">
         <div className="hero-media">
-          <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=1400&q=80" alt="Festive cotton kurtas" className="hero-img" />
+          <img src="/images/item-1.jpg" alt="Festive cotton kurtas" className="hero-img" />
           <div className="hero-overlay" />
         </div>
         <div className="hero-content">
@@ -75,12 +83,11 @@ export default function Home() {
       <section className="usp-banner">
         <div className="container">
           <div className="usp-grid">
-            {[["🌿","100% Cotton","Every piece is crafted in breathable, skin-kind cotton."],
-              ["✨","Festive aura","Designs made for celebrations — big and small."],
-              ["🚚","Free shipping","On all orders above ₹999 across India."],
-              ["↩️","Easy returns","7-day hassle-free return on all styles."]].map(([icon, title, desc]) => (
+            {uspItems.map(({ icon, title, desc }) => (
               <div className="usp-item" key={title}>
-                <div className="usp-icon">{icon}</div>
+                <div className="usp-icon" style={{ display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 12 }}>
+                  {icon}
+                </div>
                 <h3>{title}</h3>
                 <p>{desc}</p>
               </div>
@@ -98,7 +105,11 @@ export default function Home() {
               ["I named it my 'aura kurta'. Gets me compliments every time. The embroidery is exquisite!", "Roshni K., Bangalore"],
               ["Finally a brand that gets festive cotton right. Fast delivery and the packaging was gorgeous too.", "Anjali R., Delhi"]].map(([text, author]) => (
               <div className="testimonial-card" key={author}>
-                <div className="stars">★★★★★</div>
+                <div style={{ display: "flex", gap: 3, marginBottom: 12 }}>
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} size={15} filled={true} />
+                  ))}
+                </div>
                 <p>"{text}"</p>
                 <span>— {author}</span>
               </div>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useStore } from "../context/StoreContext";
+import { Close } from "./Icons";
 
 export default function AuthModal() {
   const { state, dispatch, showToast } = useStore();
@@ -19,7 +20,7 @@ export default function AuthModal() {
     if (!found) { setError("Invalid email or password. Try registering first."); return; }
     dispatch({ type: "LOGIN", payload: found });
     close();
-    showToast(`Welcome back, ${found.name}! 🎉`);
+    showToast(`Welcome back, ${found.name}!`);
   }
 
   function handleRegister(e) {
@@ -30,13 +31,15 @@ export default function AuthModal() {
     }
     dispatch({ type: "REGISTER", payload: regData });
     close();
-    showToast(`Welcome to TWS Store, ${regData.name}! 🌟`);
+    showToast(`Welcome to TWS Store, ${regData.name}!`);
   }
 
   return (
     <div className="modal-overlay" onClick={(e) => e.target === e.currentTarget && close()}>
       <div className="modal-box">
-        <button className="modal-close" onClick={close}>✕</button>
+        <button className="modal-close" onClick={close} aria-label="Close modal">
+          <Close size={18} />
+        </button>
         <div className="auth-tabs">
           <button className={`auth-tab${tab === "login" ? " active" : ""}`} onClick={() => { setTab("login"); setError(""); }}>Sign in</button>
           <button className={`auth-tab${tab === "register" ? " active" : ""}`} onClick={() => { setTab("register"); setError(""); }}>Create account</button>

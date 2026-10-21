@@ -1,5 +1,6 @@
 import { useStore } from "../context/StoreContext";
 import ProductCard from "../components/ProductCard";
+import { Bag, Heart } from "../components/Icons";
 
 export default function Wishlist() {
   const { state, dispatch, showToast } = useStore();
@@ -20,7 +21,7 @@ export default function Wishlist() {
       });
     });
     dispatch({ type: "TOGGLE_CART" });
-    showToast(`Added ${wishlist.length} styles to your cart! 🛍️`);
+    showToast(`Added ${wishlist.length} styles to your cart`);
   }
 
   return (
@@ -40,8 +41,8 @@ export default function Wishlist() {
             <button className="btn btn-outline btn-sm" onClick={clearAll}>
               Clear all
             </button>
-            <button className="btn btn-primary btn-sm" onClick={addAllToCart}>
-              Move all to cart 🛍️
+            <button className="btn btn-primary btn-sm" style={{ display: "inline-flex", alignItems: "center", gap: 6 }} onClick={addAllToCart}>
+              <Bag size={15} color="#ffffff" /> Move all to cart
             </button>
           </div>
         )}
@@ -59,7 +60,9 @@ export default function Wishlist() {
             margin: "0 auto",
           }}
         >
-          <div style={{ fontSize: 56, marginBottom: 16 }}>💛</div>
+          <div style={{ display: "flex", justifyContent: "center", marginBottom: 16 }}>
+            <Heart size={54} color="var(--ember)" />
+          </div>
           <h2 style={{ fontFamily: "var(--font-head)", fontSize: 28, marginBottom: 10 }}>
             Your wishlist is empty
           </h2>

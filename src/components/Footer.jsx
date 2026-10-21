@@ -1,4 +1,5 @@
 import { useStore } from "../context/StoreContext";
+import { Instagram, Facebook, Pinterest } from "./Icons";
 
 export default function Footer() {
   const { dispatch } = useStore();
@@ -12,9 +13,9 @@ export default function Footer() {
           <span className="brand-logo-main">TWS Store</span>
           <p>Premium cotton festive wear — crafted to name your aura.</p>
           <div className="social-links">
-            <a href="#" aria-label="Instagram" className="social-link">📸</a>
-            <a href="#" aria-label="Facebook" className="social-link">👤</a>
-            <a href="#" aria-label="Pinterest" className="social-link">📌</a>
+            <a href="#" aria-label="Instagram" className="social-link"><Instagram size={17} /></a>
+            <a href="#" aria-label="Facebook" className="social-link"><Facebook size={17} /></a>
+            <a href="#" aria-label="Pinterest" className="social-link"><Pinterest size={17} /></a>
           </div>
         </div>
         <div className="footer-col">
@@ -39,7 +40,7 @@ export default function Footer() {
       </div>
       <div className="container footer-bottom">
         <p>© 2026 TWS Store. All rights reserved.</p>
-        <p>Made with ♥ in India</p>
+        <p>Crafted in India</p>
       </div>
     </footer>
   );

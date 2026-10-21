@@ -1,4 +1,5 @@
 import { useStore } from "../context/StoreContext";
+import { Bag, Close, Trash } from "./Icons";
 
 export default function CartDrawer() {
   const { state, dispatch, cartTotal, showToast } = useStore();
@@ -25,12 +26,14 @@ export default function CartDrawer() {
       <div className="cart-panel">
         <div className="cart-header">
           <h2>Your cart {cart.length > 0 && <span style={{ fontSize: 16, color: "var(--muted)", fontFamily: "var(--font-body)" }}>({cart.length} {cart.length === 1 ? "item" : "items"})</span>}</h2>
-          <button className="close-btn" onClick={close}>✕</button>
+          <button className="close-btn" onClick={close} aria-label="Close cart"><Close size={18} /></button>
         </div>
 
         {cart.length === 0 ? (
           <div className="cart-empty">
-            <div className="empty-icon">🛍️</div>
+            <div className="empty-icon" style={{ display: "flex", justifyContent: "center", marginBottom: 16 }}>
+              <Bag size={48} color="var(--ember)" />
+            </div>
             <p>Your cart is empty</p>
             <button className="btn btn-primary" onClick={() => { close(); dispatch({ type: "SET_PAGE", payload: "shop" }); }}>
               Start shopping
@@ -54,7 +57,9 @@ export default function CartDrawer() {
                     </div>
                     <div className="cart-item-price">₹{(item.product.price * item.qty).toLocaleString("en-IN")}</div>
                   </div>
-                  <button className="cart-item-remove" onClick={() => removeItem(item.key)} aria-label="Remove">✕</button>
+                  <button className="cart-item-remove" onClick={() => removeItem(item.key)} aria-label="Remove item">
+                    <Trash size={15} />
+                  </button>
                 </div>
               ))}
             </div>
@@ -65,8 +70,8 @@ export default function CartDrawer() {
               </div>
               <div style={{ display: "flex", justifyContent: "space-between", fontSize: 14, color: "var(--muted)" }}>
                 <span>Shipping</span>
-                <span style={{ color: shipping === 0 ? "green" : "inherit" }}>
-                  {shipping === 0 ? "FREE 🎉" : `₹${shipping}`}
+                <span style={{ color: shipping === 0 ? "#16a34a" : "inherit", fontWeight: shipping === 0 ? 600 : 400 }}>
+                  {shipping === 0 ? "FREE" : `₹${shipping}`}
                 </span>
               </div>
               {shipping > 0 && (

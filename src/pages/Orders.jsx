@@ -1,4 +1,5 @@
 import { useStore } from "../context/StoreContext";
+import { Box, CheckCircle } from "../components/Icons";
 
 export default function Orders() {
   const { state, dispatch } = useStore();
@@ -27,7 +28,9 @@ export default function Orders() {
             margin: "0 auto",
           }}
         >
-          <div style={{ fontSize: 56, marginBottom: 16 }}>📦</div>
+          <div style={{ display: "flex", justifyContent: "center", marginBottom: 16 }}>
+            <Box size={54} color="var(--ember)" />
+          </div>
           <h2 style={{ fontFamily: "var(--font-head)", fontSize: 28, marginBottom: 10 }}>
             No orders placed yet
           </h2>

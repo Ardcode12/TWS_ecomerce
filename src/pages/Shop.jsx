@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { useStore } from "../context/StoreContext";
 import ProductCard from "../components/ProductCard";
 import { PRODUCTS } from "../data/products";
+import { Filter, Close, Search } from "../components/Icons";
 
 const CATEGORIES = ["Kurta Sets", "Co-ord Sets", "Dupattas", "Festive Edit"];
 
@@ -157,8 +158,9 @@ export default function Shop() {
                 <button
                   className="btn btn-outline btn-sm filter-toggle-mobile"
                   onClick={() => setMobileFilterOpen(true)}
+                  style={{ display: "inline-flex", alignItems: "center", gap: 6 }}
                 >
-                  ⚡ Filters
+                  <Filter size={14} /> Filters
                 </button>
                 <span className="product-count">
                   {filteredProducts.length}{" "}
@@ -216,11 +218,13 @@ export default function Shop() {
                     background: "none",
                     border: "none",
                     cursor: "pointer",
-                    fontSize: 14,
+                    display: "inline-flex",
+                    alignItems: "center",
                     color: "var(--ember)",
                   }}
+                  aria-label="Clear search"
                 >
-                  ✕
+                  <Close size={13} />
                 </button>
               </div>
             )}
@@ -235,7 +239,9 @@ export default function Shop() {
                   boxShadow: "var(--shadow-sm)",
                 }}
               >
-                <div style={{ fontSize: 44, marginBottom: 12 }}>🔍</div>
+                <div style={{ display: "flex", justifyContent: "center", marginBottom: 16 }}>
+                  <Search size={44} color="var(--ember)" />
+                </div>
                 <h3
                   style={{
                     fontFamily: "var(--font-head)",
