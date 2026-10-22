@@ -46,7 +46,7 @@ export default function ProductCard({ product }) {
           </span>
         )}
         <button className={`product-card-wishlist${isWished ? " active" : ""}`} onClick={handleWishlist} aria-label="Wishlist">
-          {isWished ? <HeartFilled size={18} color="#e8521a" /> : <Heart size={18} color="#5a5c50" />}
+          {isWished ? <HeartFilled size={18} color="var(--ember)" /> : <Heart size={18} color="var(--muted)" />}
         </button>
         <div className="product-card-quick" onClick={handleQuickAdd} style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}>
           <Bag size={14} color="#ffffff" /> Quick add to cart

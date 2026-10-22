@@ -148,14 +148,14 @@ export default function ProductDetail() {
                       height: 12,
                       borderRadius: "50%",
                       backgroundColor:
-                        c.toLowerCase().includes("saffron") ? "#e8521a" :
-                        c.toLowerCase().includes("ivory") ? "#f4eee3" :
-                        c.toLowerCase().includes("rust") ? "#8a6516" :
-                        c.toLowerCase().includes("ember") ? "#d04010" :
-                        c.toLowerCase().includes("blush") ? "#e29578" :
-                        c.toLowerCase().includes("solar") ? "#f4a261" :
-                        c.toLowerCase().includes("terracotta") ? "#b55333" :
-                        c.toLowerCase().includes("haldi") || c.toLowerCase().includes("gold") ? "#e9c46a" :
+                        c.toLowerCase().includes("saffron") ? "#A0522D" :
+                        c.toLowerCase().includes("ivory") ? "#F9F5EE" :
+                        c.toLowerCase().includes("rust") ? "#7F3E21" :
+                        c.toLowerCase().includes("ember") ? "#A0522D" :
+                        c.toLowerCase().includes("blush") ? "#E3D9C6" :
+                        c.toLowerCase().includes("solar") ? "#C19A6B" :
+                        c.toLowerCase().includes("terracotta") ? "#A0522D" :
+                        c.toLowerCase().includes("haldi") || c.toLowerCase().includes("gold") ? "#C19A6B" :
                         "var(--ember)",
                       display: "inline-block",
                       border: "1px solid rgba(0,0,0,0.15)",
@@ -203,7 +203,7 @@ export default function ProductDetail() {
               >
                 {isWished ? (
                   <>
-                    <HeartFilled size={18} color="#e8521a" /> Saved
+                    <HeartFilled size={18} color="var(--ember)" /> Saved
                   </>
                 ) : (
                   <>
