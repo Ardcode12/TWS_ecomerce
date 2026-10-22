@@ -56,11 +56,6 @@ export default function Header() {
   return (
     <>
       <header className="header">
-        <div className="header-top">
-          <span className="header-marquee-text">
-            Festive Sale: Up to 40% off on select styles &nbsp;|&nbsp; Free shipping on orders above ₹999 &nbsp;|&nbsp; Handcrafted pure cotton collection
-          </span>
-        </div>
         <nav className="navbar">
           <button className="nav-hamburger" onClick={() => setDrawerOpen(true)} aria-label="Open menu">
             <span /><span /><span />
